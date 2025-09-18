@@ -30,7 +30,14 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<NavWrapper />}>
-        <Route path="/" element={<Home />}></Route>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<h2>Wait...</h2>}>
+              <Home />
+            </Suspense>
+          }
+        ></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/store" element={<Store />}></Route>
       </Route>
