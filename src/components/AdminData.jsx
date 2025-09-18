@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function AdminData() {
+export default function AdminData() {
     
 
     return (

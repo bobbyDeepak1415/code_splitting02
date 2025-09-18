@@ -1,12 +1,14 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
 
 const Home = React.lazy(() =>
-  import("./components/Home").then((module) => {
-    return {
-      default: module.Home,
-    };
-  })
+  delay(2000).then(() =>
+    import("./components/Home").then((module) => {
+      return {
+        default: module.Home,
+      };
+    })
+  )
 );
 
 const About = React.lazy(() =>
@@ -44,7 +46,15 @@ function NavWrapper() {
         <Link to="/about">About</Link>
         <Link to="/store">Store</Link>
       </nav>
-      <Outlet />
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Outlet />
+      </Suspense>
     </>
   );
+}
+
+function delay(time) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time);
+  });
 }
