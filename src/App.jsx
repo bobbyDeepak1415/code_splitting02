@@ -1,11 +1,28 @@
 import React from "react";
-import { Home } from "./components/Home";
 import { Link, Outlet, Route, Routes } from "react-router-dom";
-import { About } from "./components/About";
-import { Store } from "./components/Store";
 
+const Home = React.lazy(() =>
+  import("./components/Home").then((module) => {
+    return {
+      default: module.Home,
+    };
+  })
+);
 
-
+const About = React.lazy(() =>
+  import("./components/About").then((module) => {
+    return {
+      default: module.default,
+    };
+  })
+);
+const Store = React.lazy(() =>
+  import("./components/Store").then((module) => {
+    return {
+      default: module.Store,
+    };
+  })
+);
 
 export default function App() {
   return (
@@ -27,7 +44,7 @@ function NavWrapper() {
         <Link to="/about">About</Link>
         <Link to="/store">Store</Link>
       </nav>
-        <Outlet />
+      <Outlet />
     </>
   );
 }
