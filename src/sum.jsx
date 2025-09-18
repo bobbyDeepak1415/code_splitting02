@@ -1,5 +1,5 @@
 import React from "react";
 
-export function Sum() {
-  return <h2>Hello</h2>;
+export function Sum(a,b) {
+  return a+b
 }
